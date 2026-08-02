@@ -1,0 +1,8 @@
+apiVersion: v1
+metadata:
+  name: services-analytics-dashboard
+  displayName: Contoso Services Analytics Dashboard
+  description: Fabric-authenticated analytics dashboard for a professional-services firm — FTE & revenue KPIs, D3 charts, and a reusable design system, driven by seeded sample data.
+entries:
+  - path: .
+    name: Contoso Services Analytics Dashboard

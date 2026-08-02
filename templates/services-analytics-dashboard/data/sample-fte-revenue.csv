@@ -1,0 +1,91 @@
+practiceCode,practiceName,period,fte,revenue,billableHours,utilization
+RTS,"Restructuring & Turnaround",2024-01-01,84,4937370,10618,79
+RTS,"Restructuring & Turnaround",2024-02-01,85,5122440,11016,81
+RTS,"Restructuring & Turnaround",2024-03-01,87,5242875,11275,81
+RTS,"Restructuring & Turnaround",2024-04-01,88,5303325,11405,81
+RTS,"Restructuring & Turnaround",2024-05-01,90,5356800,11520,80
+RTS,"Restructuring & Turnaround",2024-06-01,91,5009910,10774,74
+RTS,"Restructuring & Turnaround",2024-07-01,92,5065245,10893,74
+RTS,"Restructuring & Turnaround",2024-08-01,94,5175450,11130,74
+RTS,"Restructuring & Turnaround",2024-09-01,95,5654400,12160,80
+RTS,"Restructuring & Turnaround",2024-10-01,97,5773440,12416,80
+RTS,"Restructuring & Turnaround",2024-11-01,98,6416070,13798,88
+RTS,"Restructuring & Turnaround",2024-12-01,99,6481635,13939,88
+RTS,"Restructuring & Turnaround",2025-01-01,101,6161715,13251,82
+RTS,"Restructuring & Turnaround",2025-02-01,102,6374685,13709,84
+RTS,"Restructuring & Turnaround",2025-03-01,104,6499770,13978,84
+RTS,"Restructuring & Turnaround",2025-04-01,105,6562080,14112,84
+RTS,"Restructuring & Turnaround",2025-05-01,106,6624390,14246,84
+RTS,"Restructuring & Turnaround",2025-06-01,108,6267270,13478,78
+CPI,"Corporate Performance Improvement",2024-01-01,120,6218880,15168,79
+CPI,"Corporate Performance Improvement",2024-02-01,122,6482510,15811,81
+CPI,"Corporate Performance Improvement",2024-03-01,124,6588700,16070,81
+CPI,"Corporate Performance Improvement",2024-04-01,127,6748190,16459,81
+CPI,"Corporate Performance Improvement",2024-05-01,129,6854380,16718,81
+CPI,"Corporate Performance Improvement",2024-06-01,131,6445200,15720,75
+CPI,"Corporate Performance Improvement",2024-07-01,133,6543600,15960,75
+CPI,"Corporate Performance Improvement",2024-08-01,135,6642000,16200,75
+CPI,"Corporate Performance Improvement",2024-09-01,138,6789600,16560,75
+CPI,"Corporate Performance Improvement",2024-10-01,140,6888000,16800,75
+CPI,"Corporate Performance Improvement",2024-11-01,142,7917920,19312,85
+CPI,"Corporate Performance Improvement",2024-12-01,144,8029440,19584,85
+CPI,"Corporate Performance Improvement",2025-01-01,146,7566140,18454,79
+CPI,"Corporate Performance Improvement",2025-02-01,149,7917100,19310,81
+CPI,"Corporate Performance Improvement",2025-03-01,151,7924480,19328,80
+CPI,"Corporate Performance Improvement",2025-04-01,153,8029440,19584,80
+CPI,"Corporate Performance Improvement",2025-05-01,155,8236080,20088,81
+CPI,"Corporate Performance Improvement",2025-06-01,157,7724400,18840,75
+DAI,"Disputes & Investigations",2024-01-01,66,3898960,7498,71
+DAI,"Disputes & Investigations",2024-02-01,67,4069520,7826,73
+DAI,"Disputes & Investigations",2024-03-01,67,4069520,7826,73
+DAI,"Disputes & Investigations",2024-04-01,68,4129840,7942,73
+DAI,"Disputes & Investigations",2024-05-01,68,4129840,7942,73
+DAI,"Disputes & Investigations",2024-06-01,69,3788720,7286,66
+DAI,"Disputes & Investigations",2024-07-01,70,3902080,7504,67
+DAI,"Disputes & Investigations",2024-08-01,70,3902080,7504,67
+DAI,"Disputes & Investigations",2024-09-01,71,4312360,8293,73
+DAI,"Disputes & Investigations",2024-10-01,71,4312360,8293,73
+DAI,"Disputes & Investigations",2024-11-01,72,4552600,8755,76
+DAI,"Disputes & Investigations",2024-12-01,73,4616040,8877,76
+DAI,"Disputes & Investigations",2025-01-01,73,4251520,8176,70
+DAI,"Disputes & Investigations",2025-02-01,74,4433000,8525,72
+DAI,"Disputes & Investigations",2025-03-01,74,4433000,8525,72
+DAI,"Disputes & Investigations",2025-04-01,75,4492800,8640,72
+DAI,"Disputes & Investigations",2025-05-01,76,4552600,8755,72
+DAI,"Disputes & Investigations",2025-06-01,76,4173520,8026,66
+PES,"Private Equity Services",2024-01-01,38,2377485,4803,79
+PES,"Private Equity Services",2024-02-01,41,2630430,5314,81
+PES,"Private Equity Services",2024-03-01,44,2822490,5702,81
+PES,"Private Equity Services",2024-04-01,47,3015045,6091,81
+PES,"Private Equity Services",2024-05-01,50,3207600,6480,81
+PES,"Private Equity Services",2024-06-01,54,3207600,6480,75
+PES,"Private Equity Services",2024-07-01,57,3385800,6840,75
+PES,"Private Equity Services",2024-08-01,60,3564000,7200,75
+PES,"Private Equity Services",2024-09-01,63,4091670,8266,82
+PES,"Private Equity Services",2024-10-01,66,4286205,8659,82
+PES,"Private Equity Services",2024-11-01,69,4699530,9494,86
+PES,"Private Equity Services",2024-12-01,72,4903965,9907,86
+PES,"Private Equity Services",2025-01-01,75,4752000,9600,80
+PES,"Private Equity Services",2025-02-01,78,5065830,10234,82
+PES,"Private Equity Services",2025-03-01,81,5260365,10627,82
+PES,"Private Equity Services",2025-04-01,85,5520240,11152,82
+PES,"Private Equity Services",2025-05-01,88,5715270,11546,82
+PES,"Private Equity Services",2025-06-01,91,5477670,11066,76
+TAX,"Tax Advisory",2024-01-01,52,2244665,6323,76
+TAX,"Tax Advisory",2024-02-01,53,2347970,6614,78
+TAX,"Tax Advisory",2024-03-01,54,2392345,6739,78
+TAX,"Tax Advisory",2024-04-01,55,2436720,6864,78
+TAX,"Tax Advisory",2024-05-01,56,2481095,6989,78
+TAX,"Tax Advisory",2024-06-01,57,2330930,6566,72
+TAX,"Tax Advisory",2024-07-01,57,2330930,6566,72
+TAX,"Tax Advisory",2024-08-01,58,2372110,6682,72
+TAX,"Tax Advisory",2024-09-01,59,2613865,7363,78
+TAX,"Tax Advisory",2024-10-01,60,2658240,7488,78
+TAX,"Tax Advisory",2024-11-01,61,2737050,7710,79
+TAX,"Tax Advisory",2024-12-01,62,2782135,7837,79
+TAX,"Tax Advisory",2025-01-01,63,2612090,7358,73
+TAX,"Tax Advisory",2025-02-01,64,2726400,7680,75
+TAX,"Tax Advisory",2025-03-01,65,2769000,7800,75
+TAX,"Tax Advisory",2025-04-01,66,2811600,7920,75
+TAX,"Tax Advisory",2025-05-01,66,2811600,7920,75
+TAX,"Tax Advisory",2025-06-01,67,2625935,7397,69

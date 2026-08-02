@@ -1,0 +1,12 @@
+{
+  "templateId": "services-analytics-dashboard",
+  "icon": "chart-bar",
+  "services": {
+    "auth": true,
+    "data": true,
+    "storage": false,
+    "staticHosting": true
+  },
+  "hasDabSchema": true,
+  "tokens": ["__RAYFIN_API_URL__", "__RAYFIN_PK__"]
+}

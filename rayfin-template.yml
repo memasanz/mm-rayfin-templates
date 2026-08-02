@@ -1,0 +1,9 @@
+apiVersion: v1
+metadata:
+  name: mm-rayfin-templates
+  displayName: MM Rayfin Templates
+  description: A curated gallery of Project Rayfin templates for Fabric-hosted apps.
+entries:
+  - path: templates/services-analytics-dashboard
+    name: Contoso Services Analytics Dashboard
+    description: A Fabric-authenticated analytics dashboard for a professional-services firm (Contoso) — FTE and revenue KPIs, D3 charts, and a reusable "Contoso" design system, driven by seeded sample data. Ships the published Rayfin AI skill.
