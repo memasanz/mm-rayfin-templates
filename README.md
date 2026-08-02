@@ -13,12 +13,15 @@ interactive picker when multiple templates are available.
 
 > **Hitting `401 Unauthorized` on `@microsoft/create-rayfin`?** Your machine's user-level `.npmrc`
 > maps the `@microsoft` scope to GitHub Packages. Rayfin lives on the public Microsoft feed —
-> override the scope for the command:
-> ```bash
-> npm create @microsoft/rayfin --@microsoft:registry=https://packagefeedproxy.microsoft.io/npm/ -- \
->   --template https://github.com/memasanz/mm-rayfin-templates
+> override the scope for the command (run it **all on one line**):
+> ```powershell
+> npm create @microsoft/rayfin --@microsoft:registry=https://packagefeedproxy.microsoft.io/npm/ -- --template https://github.com/memasanz/mm-rayfin-templates
 > ```
 > or set it permanently: `npm config set @microsoft:registry https://packagefeedproxy.microsoft.io/npm/`.
+>
+> **Do not split the command with a trailing `\`.** In PowerShell `\` is a literal character, not a
+> line-continuation (that's `` ` ``). A stray trailing `\` is passed to the scaffolder as the target
+> directory and resolves to `C:\`, producing `Failed to clear target directory 'C:\': EPERM`.
 
 ## Templates
 

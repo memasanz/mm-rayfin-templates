@@ -24,10 +24,12 @@ and revenue across service lines with a reusable, corporate "Contoso" design sys
 > `401 Unauthorized ... @microsoft%2fcreate-rayfin`. Fix it one of these ways:
 >
 > **Per command (no global change):**
-> ```bash
-> npm create @microsoft/rayfin --@microsoft:registry=https://packagefeedproxy.microsoft.io/npm/ -- \
->   --template https://github.com/memasanz/mm-rayfin-templates
+> ```powershell
+> npm create @microsoft/rayfin --@microsoft:registry=https://packagefeedproxy.microsoft.io/npm/ -- --template https://github.com/memasanz/mm-rayfin-templates
 > ```
+> Run it **all on one line** — in PowerShell a trailing `\` is a literal character (not a line
+> continuation), and gets passed to the scaffolder as the target directory, resolving to `C:\` and
+> failing with `Failed to clear target directory 'C:\': EPERM`.
 >
 > **Permanently (recommended if you use Rayfin often):** point the scope at the Microsoft feed:
 > ```bash
