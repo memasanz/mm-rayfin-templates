@@ -11,6 +11,15 @@ npm create @microsoft/rayfin -- --template https://github.com/memasanz/mm-rayfin
 The CLI reads [`rayfin-template.yml`](./rayfin-template.yml) at the repo root and shows an
 interactive picker when multiple templates are available.
 
+> **Hitting `401 Unauthorized` on `@microsoft/create-rayfin`?** Your machine's user-level `.npmrc`
+> maps the `@microsoft` scope to GitHub Packages. Rayfin lives on the public Microsoft feed —
+> override the scope for the command:
+> ```bash
+> npm create @microsoft/rayfin --@microsoft:registry=https://packagefeedproxy.microsoft.io/npm/ -- \
+>   --template https://github.com/memasanz/mm-rayfin-templates
+> ```
+> or set it permanently: `npm config set @microsoft:registry https://packagefeedproxy.microsoft.io/npm/`.
+
 ## Templates
 
 | Template | Description | Auth | Data | Stack |

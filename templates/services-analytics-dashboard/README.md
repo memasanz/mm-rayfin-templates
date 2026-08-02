@@ -17,6 +17,25 @@ and revenue across service lines with a reusable, corporate "Contoso" design sys
 
 ## Getting started
 
+> **Prerequisite — `@microsoft` npm scope.** Rayfin packages (including the
+> `@microsoft/create-rayfin` initializer) live on the **public Microsoft package feed**, not GitHub
+> Packages. If your machine has a user-level `.npmrc` that maps the `@microsoft` scope to
+> `https://npm.pkg.github.com`, `npm create @microsoft/rayfin` fails with
+> `401 Unauthorized ... @microsoft%2fcreate-rayfin`. Fix it one of these ways:
+>
+> **Per command (no global change):**
+> ```bash
+> npm create @microsoft/rayfin --@microsoft:registry=https://packagefeedproxy.microsoft.io/npm/ -- \
+>   --template https://github.com/memasanz/mm-rayfin-templates
+> ```
+>
+> **Permanently (recommended if you use Rayfin often):** point the scope at the Microsoft feed:
+> ```bash
+> npm config set @microsoft:registry https://packagefeedproxy.microsoft.io/npm/
+> ```
+> Verify with `npm config get @microsoft:registry`. The scaffolded project already includes an
+> `.npmrc` with this pin, so `npm install` inside the project works regardless.
+
 ```bash
 # Install dependencies (uses the pinned @microsoft feed in .npmrc)
 npm install
