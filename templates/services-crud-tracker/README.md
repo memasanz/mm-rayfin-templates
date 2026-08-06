@@ -1,19 +1,23 @@
-# Contoso Services Analytics Dashboard
+# Contoso Services Request Tracker
 
-A Fabric-authenticated analytics dashboard for a professional-services firm ("Contoso"), built on
-[Project Rayfin](https://github.com/microsoft/awesome-rayfin). It shows FTE headcount, utilization,
-and revenue across service lines with a reusable, corporate "Contoso" design system — driven by
-**seeded sample data**, so it runs and demos with no data setup.
+A Fabric-authenticated **CRUD** app for a professional-services firm ("Contoso"), built on
+[Project Rayfin](https://github.com/microsoft/awesome-rayfin). It lets you **create, edit, and
+delete service requests** — every change is written back to a Rayfin **MSSQL** backend and
+reflected live in the KPIs and charts. It shares the corporate "Contoso" design system with the
+read-only analytics dashboard, but this is the **write-back** sibling: a minimal, single-entity
+example of persisting data to SQL.
 
 - **Auth** — Microsoft Fabric SSO in production, mock email/password locally.
-- **Data** — `Practices` and `PeriodMetrics` entities via Rayfin's typed data client.
+- **Data** — one `Requests` entity via Rayfin's typed data client, with full create/read/update/delete.
+- **Local fallback** — with no backend configured, records live in an in-memory store seeded from
+  the bundled sample data, so the CRUD flows are fully usable without SQL.
 - **Design system** — deep-navy / accent-blue / amber tokens, square geometry, condensed display
   type. Reskin the whole app from one CSS file.
-- **Charts** — D3 revenue trend line + horizontal bar charts for revenue and FTE mix.
+- **Charts** — D3 horizontal bar charts for requests-by-team and estimate-hours-by-status.
 - **AI-ready** — bundles the published `rayfin` AI skill and Rayfin MCP server.
 
-> **Sample data only (v1).** All figures come from a deterministic, self-contained generator. There
-> is no spreadsheet upload yet — that is the planned next iteration (see [Roadmap](#roadmap)).
+> **Basic example.** This template is intentionally small — one entity, one page, the four CRUD
+> operations. Use it as the starting point for a SQL-backed app and add entities/pages from here.
 
 ## Getting started
 
@@ -47,9 +51,10 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) and sign in. Against a **local** backend you are
-signed in with a mock dev account and the dashboard renders the in-memory sample data immediately.
-Against a **Fabric** backend, the sample dataset is seeded into the database on first load if it is
-empty.
+signed in with a mock dev account and the app renders the in-memory sample requests immediately —
+create/edit/delete all work, but changes are kept in memory for the session. Against a **Fabric**
+backend, the sample requests are seeded into the SQL database on first load if it is empty, and every
+change is persisted.
 
 To build the static bundle Fabric hosts:
 
@@ -70,7 +75,7 @@ CLI. This table doubles as a checklist if you fork the template.
 | `rayfin-template.yml` | Leaf template manifest the CLI reads when scaffolding this single template. Contains `apiVersion: v1`, `metadata`, and an `entries` item with `path: .`. |
 | `rayfin/rayfin.yml` | Rayfin **service configuration** — enables auth (Fabric + password), the data API (`mssql` dialect), and static hosting (build command + output folder). `id`/`name` must match the directory name. |
 | `rayfin/data/schema.ts` | The Rayfin **data model**. Aggregates the decorator-based entity classes into the `schema` array and the `AppSchema` type the typed client is generic over. |
-| `rayfin/data/Practices.ts`, `rayfin/data/PeriodMetrics.ts` | The entity definitions (`@entity`, `@uuid`, `@text`, `@int`, `@decimal`, `@date`, `@one`). Split per entity, mirroring Rayfin conventions. |
+| `rayfin/data/Requests.ts` | The single entity definition (`@entity`, `@uuid`, `@text`, `@int`, `@date`). Uses Rayfin's default permissions (any authenticated caller has full CRUD). |
 | `rayfin/tsconfig.json` | Isolated TypeScript config for the `rayfin/` project (Node module resolution, emit for DAB), kept separate from the app TS config and wired via a project reference. |
 | `index.html` | Vite HTML entry document that loads `src/main.tsx`. |
 | `src/main.tsx` | React entry point — bootstraps auth, wraps the app in `AuthProvider`, imports the global stylesheet. |
@@ -93,49 +98,47 @@ CLI. This table doubles as a checklist if you fork the template.
 ## Project structure
 
 ```
-services-analytics-dashboard/
+services-crud-tracker/
 ├── .agents/skills/rayfin/SKILL.md   # published Rayfin AI skill (verbatim)
 ├── .cursor/mcp.json                 # Rayfin MCP server for Cursor
 ├── .mcp.json                        # Rayfin MCP server for GitHub Copilot
 ├── AGENTS.md                        # agent onboarding notes
 ├── manifest.json                    # gallery capabilities manifest
 ├── rayfin-template.yml              # leaf template manifest
-├── data/
-│   └── sample-fte-revenue.csv       # the seed data as a spreadsheet (for reference / future upload)
 ├── rayfin/
 │   ├── rayfin.yml                   # service config (auth + data + hosting)
 │   ├── tsconfig.json                # isolated Rayfin TS config
 │   └── data/
-│       ├── Practices.ts             # service-line entity
-│       ├── PeriodMetrics.ts         # monthly FTE/revenue entity
+│       ├── Requests.ts              # the single service-request entity
 │       └── schema.ts                # schema array + AppSchema type
 ├── src/
 │   ├── main.tsx                     # bootstrap + AuthProvider
 │   ├── App.tsx                      # routes + auth guard
 │   ├── data/
-│   │   └── sampleData.ts            # deterministic sample data generator
+│   │   └── sampleData.ts            # TEAMS/PRIORITIES/STATUSES + sample requests
 │   ├── services/
-│   │   ├── rayfinClient.ts          # typed RayfinClient init
+│   │   ├── rayfinClient.ts          # typed RayfinClient init + isLocalBackend()
 │   │   ├── bootstrap.ts             # env → client + auth-service wiring
 │   │   ├── IAuthService.ts          # auth contract
 │   │   ├── MockAuthService.ts       # local email/password auth
 │   │   ├── RayfinAuthService.ts     # Fabric brokered auth
-│   │   ├── practices.ts             # Practices reads + sample seed
-│   │   ├── metrics.ts               # PeriodMetrics reads + sample seed
-│   │   ├── analytics.ts             # pure KPI/trend/rollup helpers
-│   │   └── seed.ts                  # ensureSeeded() orchestrator
+│   │   ├── requests.ts              # CRUD (create/read/update/delete) + local in-memory store
+│   │   ├── stats.ts                 # pure KPI / group-count helpers
+│   │   └── seed.ts                  # ensureSeeded() — seeds a fresh SQL database
 │   ├── hooks/
 │   │   └── AuthContext.tsx          # React auth context + useAuth()
 │   ├── components/
 │   │   ├── AuthPage.tsx             # sign-in screen
-│   │   ├── RevenueTrendChart.tsx    # D3 revenue trend (area + line)
+│   │   ├── ErrorBoundary.tsx        # top-level error boundary
+│   │   ├── RequestFormModal.tsx     # create/edit request modal form
 │   │   └── HorizontalBarChart.tsx   # D3 reusable horizontal bars
 │   ├── pages/
-│   │   └── DashboardPage.tsx        # header, hero, KPIs, charts, table
+│   │   └── RequestsPage.tsx         # header, hero, KPIs, charts, records table + CRUD actions
 │   ├── styles/
 │   │   └── main.css                 # Contoso design tokens + components
 │   └── __tests__/
-│       └── analytics.test.ts        # sample-data + aggregation tests
+│       ├── analytics.test.ts        # sample-data + stats aggregation tests
+│       └── metrics.test.ts          # createdOn date-normalization contract
 └── (config: package.json, tsconfig.json, vite/vitest/eslint configs, index.html, .gitignore, .npmrc)
 ```
 
@@ -153,30 +156,28 @@ services-analytics-dashboard/
 
 ## Data model & sample data
 
-Two entities model the domain (both use Rayfin's **default permissions** — any authenticated caller
-can read/write; tighten later with `@authenticated`/`@role`):
+One entity models the domain. It uses Rayfin's **default permissions** — any authenticated caller
+can read/write; tighten later with `@authenticated`/`@role` policies (add
+`policy: (claims, item) => claims.sub.eq(item.owner_id)` for per-user row-level security):
 
-- **`Practices`** — a service line: `code`, `name`, `leader`, `region`.
-- **`PeriodMetrics`** — one row per practice per month: `period`, `fte`, `revenue`, `billableHours`,
-  `utilization`, linked to a practice via `@one`.
+- **`Requests`** — a single service request: `id`, `title`, `team`, `owner`, `priority`, `status`,
+  `estimateHours`, `createdOn`. Every column maps to an editable field in the create/edit form.
 
-`src/data/sampleData.ts` generates a deterministic 18-month history for five Contoso practices.
-Revenue is derived from billable hours and a per-practice blended rate, with light seeded seasonality
-(summer utilization dip, year-end push, one fast-growing practice) so the charts tell a story. The
-same dataset is exported to `data/sample-fte-revenue.csv` for reference and as the shape a future
-upload path would produce.
+`src/data/sampleData.ts` defines the allowed `TEAMS` / `PRIORITIES` / `STATUSES` and a handful of
+seed requests. Seeding is handled by `ensureSeeded()`:
 
-Seeding is handled by `ensureSeeded()`:
+- **Local backend** — the `requests` service keeps an in-memory store seeded lazily from the sample
+  list, so the first paint is never empty and CRUD works without a database.
+- **Fabric backend** — if no requests exist, the full sample set is inserted so a fresh SQL database
+  is never empty. Idempotent — after that, the app's create/edit/delete flows are the source of truth.
 
-- **Local backend** — the `practices`/`metrics` services keep an in-memory store seeded lazily from
-  the sample generator, so the first paint is never empty.
-- **Fabric backend** — if no practices exist, the full dataset is created (practices, then linked
-  metrics). Idempotent.
+`stats.ts` holds the pure aggregation helpers (`computeKpis`, `countByTeam`, `estimateByStatus`) that
+drive the KPI band and the two bar charts; they are unit-tested in `src/__tests__/`.
 
 ## Design system
 
 All brand styling lives in `src/styles/main.css` as CSS custom properties and two component classes
-(`contoso-hero`, `contoso-btn`). To reskin the dashboard, change the `--color-brand-*` tokens and the
+(`contoso-hero`, `contoso-btn`). To reskin the app, change the `--color-brand-*` tokens and the
 `--font-display` / `--radius-btn` values — every KPI, chart accent, hero, and button follows.
 
 ## Deploying to Fabric
@@ -188,9 +189,25 @@ Fabric SSO additionally requires `VITE_FABRIC_WORKSPACE_ID`, `VITE_FABRIC_ITEM_I
 `VITE_FABRIC_PORTAL_URL`. See the bundled `rayfin` skill and `rayfin docs` for the full deployment
 workflow.
 
-## Roadmap
+## Build your data model from a spreadsheet
 
-- **Spreadsheet upload** — parse an uploaded `.xlsx`/`.csv` (matching `data/sample-fte-revenue.csv`)
-  and persist rows to `PeriodMetrics`, replacing the seeded data. The schema and sample file are
-  shaped to make this a drop-in addition.
-- **Drill-down** — per-practice detail pages and date-range filtering.
+This template bundles a **`spreadsheet-to-datamodel`** skill
+(`.agents/skills/spreadsheet-to-datamodel/`) that turns a user's `.csv` / `.xlsx` / `.xlsm`
+into Rayfin entities in this template's shape. A Python profiler
+(`scripts/profile_spreadsheet.py`) deterministically infers sheets, column types, keys, and
+cross-sheet relationships; the AI agent then reviews that profile with you and authors
+`rayfin/data/*.ts` + seed data. Macros are inspected, never executed. See the skill's `SKILL.md`
+for the full workflow.
+
+```bash
+pip install -r .agents/skills/spreadsheet-to-datamodel/scripts/requirements.txt
+python .agents/skills/spreadsheet-to-datamodel/scripts/profile_spreadsheet.py <your-file> --draft-entities
+```
+
+## Next steps
+
+- **More entities** — add a second `@entity` class in `rayfin/data/`, register it in `schema.ts`,
+  and add a matching service + page.
+- **Validation & row-level security** — tighten the `Requests` entity with `@authenticated`/`@role`
+  policies and an owner-based `policy` predicate.
+- **Filtering & search** — add query params to `getRequests()` and filter controls to the table.

@@ -1,5 +1,5 @@
 {
-  "servers": {
+  "mcpServers": {
     "rayfin": {
       "args": [
         "-y",
