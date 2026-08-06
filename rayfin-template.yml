@@ -7,3 +7,6 @@ entries:
   - path: templates/services-analytics-dashboard
     name: Contoso Services Analytics Dashboard
     description: A Fabric-authenticated analytics dashboard for a professional-services firm (Contoso) — FTE and revenue KPIs, D3 charts, and a reusable "Contoso" design system, driven by seeded sample data. Ships the published Rayfin AI skill.
+  - path: templates/services-crud-tracker
+    name: Contoso Services Request Tracker
+    description: A Fabric-authenticated CRUD app on a Rayfin MSSQL backend — create, edit, and delete service requests with live KPIs and full write-back, styled like the Contoso analytics dashboard. Ships the published Rayfin AI skill plus a spreadsheet-to-datamodel skill that turns a CSV/XLSX/XLSM into Rayfin entities.

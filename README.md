@@ -28,6 +28,7 @@ interactive picker when multiple templates are available.
 | Template | Description | Auth | Data | Stack |
 | --- | --- | --- | --- | --- |
 | **[Contoso Services Analytics Dashboard](./templates/services-analytics-dashboard)** | Fabric-authenticated analytics dashboard for a professional-services firm — FTE & revenue KPIs, D3 charts, and a reusable "Contoso" design system, driven by seeded sample data. | ✅ | ✅ | React 19, Vite, Tailwind, D3 |
+| **[Contoso Services Request Tracker](./templates/services-crud-tracker)** | Fabric-authenticated **CRUD** app on a Rayfin MSSQL backend — create, edit, and delete service requests with live KPIs and full **write-back**, styled like the analytics dashboard. Bundles a **spreadsheet-to-datamodel** skill (CSV/XLSX/XLSM → Rayfin entities). | ✅ | ✅ | React 19, Vite, Tailwind, D3 |
 
 ## What is Project Rayfin?
 
@@ -37,6 +38,10 @@ decorators and Rayfin handles the backend — auth, data API, storage, and hosti
 Every template in this gallery bundles the **published `rayfin` AI skill**
 (`.agents/skills/rayfin/SKILL.md`) and the Rayfin MCP server (`.mcp.json`) so AI coding agents have
 version-locked Rayfin context out of the box.
+
+The **Contoso Services Request Tracker** additionally bundles a **`spreadsheet-to-datamodel`** skill
+(`.agents/skills/spreadsheet-to-datamodel/`): point an agent at a CSV/XLSX/XLSM and it profiles the
+sheets (Python) and helps you author Rayfin entities in the template's shape.
 
 ## Authoring a template
 
